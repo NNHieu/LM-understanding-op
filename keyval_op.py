@@ -22,7 +22,7 @@ def parse_arguments():
     parser.add_argument('--model', type=str, default='UCLA-AGI/zephyr-7b-sft-full-SPIN-iter0')
     parser.add_argument('--model_alias', type=str, required=True)
     parser.add_argument('--revision', type=str, default=None)
-    parser.add_argument('--not-task-description', action="store_true")
+    parser.add_argument('--no-task-description', action="store_true")
     parser.add_argument('--psize', type=int, default=1)
     # parser.add_argument('--data_frac', type=int, default=0)
     # parser.add_argument('--frac_len', type=int, default=0)
@@ -36,8 +36,8 @@ ds = load_from_disk("datasets/value_at_index/v0.1")
 # ds = ds.filter(lambda e: e['query_array_length'] < 4)
 
 revision = args.revision
-if args.not_task_description:
-    output_path = Path("outputs/keyval-op-v0.1/_wo_task_description")
+if args.no_task_description:
+    output_path = Path("outputs/keyval-op-v0.1_wotd")
 else:
     output_path = Path("outputs/keyval-op-v0.1/")
 output_path.mkdir(exist_ok=True, parents=True)
@@ -51,7 +51,7 @@ if tokenizer.pad_token is None:
     
 # ds = ds.filter(lambda e: e['num_few_shots'] == 0)
 ds = ds.map(create_prompt_dictionary,
-            fn_kwargs={"include_task_description": not args.not_task_description},
+            fn_kwargs={"include_task_description": not args.no_task_description},
             )
 
 print("----- Example prompt -----")

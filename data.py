@@ -126,5 +126,5 @@ if __name__ == '__main__':
     print(generate_sample(10))
     output_dir = Path("datasets")
     ds = create_dataset()
-    ds.save_to_disk(str(output_dir / f"value_at_index/v0.1"))
+    # ds.save_to_disk(str(output_dir / f"value_at_index_train/v0.1"))
     # ds.push_to_hub("nnheui/understanding-index-operation-v0.1", private=True)

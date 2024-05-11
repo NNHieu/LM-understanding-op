@@ -1,0 +1,38 @@
+beta: 0.01
+bf16: true
+dataset_mixer:
+  /home/ubuntu/hieu.nn/Lang/SPIN/data/spin_data/stablelm-2-1_6b-sft-full-spin-sigmoid-iter1/ultrachat_200k_generated/1_5000: 1.0
+  /home/ubuntu/hieu.nn/Lang/SPIN/data/spin_data/stablelm-2-1_6b-sft-full-spin-sigmoid-iter2/ultrachat_200k_generated/2_5000: 1.0
+dataset_splits:
+- train
+- test
+do_eval: false
+eval_steps: 100
+evaluation_strategy: 'no'
+gradient_accumulation_steps: 10
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+hub_model_id: stablelm-2-1_6b-sft-full-spin-sigmoid-iter2
+learning_rate: 5.0e-07
+log_level: info
+logging_steps: 10
+loss_type: sigmoid
+lr_scheduler_type: cosine
+max_length: 1024
+max_prompt_length: 512
+model_name_or_path: /home/ubuntu/hieu.nn/Lang/alignment-handbook/data/stablelm-2-1_6b-sft-full/spin/sigmoid/iter1
+num_train_epochs: 1
+optim: adamw_torch
+output_dir: /home/ubuntu/hieu.nn/Lang/alignment-handbook/data/stablelm-2-1_6b-sft-full/spin/sigmoid/iter2
+per_device_eval_batch_size: 8
+per_device_train_batch_size: 1
+precompute_ref_log_probs_path: /home/ubuntu/hieu.nn/Lang/alignment-handbook/data/stablelm-2-1_6b-sft-full/spin/sigmoid/iter2/ref_logprobs.pkl
+preprocessing_num_workers: 12
+push_to_hub: true
+save_steps: 100
+save_strategy: steps
+save_total_limit: 1
+seed: 42
+torch_dtype: null
+warmup_ratio: 0.1
